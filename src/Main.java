@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         createList();
+        out.println(givenList);
         out.println(SquareSums.buildUpTo(N));
     }
 

@@ -8,7 +8,6 @@ public class SquareSums {
     public static List<Integer> buildUpTo(int n) {
         if(n > 5){
             createSquares(n);
-            System.out.println(squares);
             return squares;
         }
         return null;
