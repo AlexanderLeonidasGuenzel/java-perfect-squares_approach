@@ -1,16 +1,20 @@
-import java.util.Arrays;
-
+import java.util.ArrayList;
+import java.util.List;
 import static java.lang.System.*;
 
 public class Main {
+     static final int N = 15;
+    static List<Integer> givenList = new ArrayList<>();
     public static void main(String[] args) {
-        final int SIZE = 15;
-        int[] givenNumbers = new int[SIZE];
 
-        //fill array with numbers from 1 to 15
-        for (int i = 0; i < SIZE; i++) {
-            givenNumbers[i] = i + 1;
+        createList();
+        out.println(SquareSums.buildUpTo(N));
+    }
+
+    public static void createList(){
+
+        for(int i = 1; i <= N; i++){
+            givenList.add(i);
         }
-        out.println("Given numbers: " + Arrays.toString(givenNumbers));
     }
 }
