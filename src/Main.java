@@ -5,6 +5,6 @@ public class Main {
     static final int N = 15;
     public static void main(String[] args) {
 
-        out.println(SquareSums.buildUpTo(N));
+        out.println("perfectSquares " + SquareSums.buildUpTo(N));
     }
 }

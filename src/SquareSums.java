@@ -9,15 +9,18 @@ public class SquareSums {
     static List<Integer> list1 = new ArrayList<>();
     static List<Integer> list2 = new ArrayList<>();
 
+    static List<Integer> perfectSquares = new ArrayList<>();
+
     public static List<Integer> buildUpTo(int n) {
         if(n >= 15){
             createList(n);
+            out.println("givenList " + givenList);
             createSquares(n);
             out.println("squares: " + squares);
             makeTwoLists();
-            out.println(list1 + " " + list2);
-            out.println(searchSquares(list1));
-            return givenList;
+            out.println("List 1 " + list1 + " Liste 2 " + list2);
+            out.println("permutations " + searchSquares(givenList));
+            return perfectSquares;
         }
         return null;
     }
