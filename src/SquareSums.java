@@ -1,16 +1,22 @@
 import java.util.*;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import static java.lang.System.*;
 
 public class SquareSums {
     static List<Integer> squares = new ArrayList<>();
     static List<Integer> givenList = new ArrayList<>();
 
+    static List<Integer> list1 = new ArrayList<>();
+    static List<Integer> list2 = new ArrayList<>();
+
     public static List<Integer> buildUpTo(int n) {
         if(n >= 15){
             createList(n);
             createSquares(n);
-            System.out.println(makeTwoLists());
+            out.println("squares: " + squares);
+            makeTwoLists();
+            out.println(list1 + " " + list2);
+            out.println(searchSquares(list1));
             return givenList;
         }
         return null;
@@ -30,20 +36,28 @@ public class SquareSums {
         }
     }
 
-    public static List<List<Integer>> makeTwoLists(){
+    public static void makeTwoLists(){
 
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        int end = givenList.size() + 1;
-        int half = end - (givenList.size() / 2);
-        IntStream.range(0, half)
+        int start = givenList.get(0);
+        int end = givenList.get(givenList.size()-1) + 1;
+        int half = givenList.get((givenList.size() / 2) + 1);
+        IntStream.range(start, half)
                 .forEach(list1::add);
         IntStream.range(half, end)
                 .forEach(list2::add);
+    }
 
-        List<List<Integer>> list = new ArrayList<>();
-        list.add(list1);
-        list.add(list2);
-        return list;
+    public static Map<Integer, List<Integer>> searchSquares(List<Integer> list) {
+        Map<Integer, List<Integer>> squarePairs = new HashMap<>();
+
+        for (Integer key : list) {
+            for (Integer value : list) {
+                int sum = key + value;
+                if (!key.equals(value) && squares.contains(sum)) {
+                    squarePairs.computeIfAbsent(key, k -> new ArrayList<>()).add(value); //lambda expr. to add a new list for a key
+                }
+            }
+        }
+        return squarePairs;
     }
 }
