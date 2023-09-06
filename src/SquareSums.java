@@ -19,7 +19,12 @@ public class SquareSums {
             out.println("squares: " + squares);
             makeTwoLists();
             out.println("List 1 " + list1 + " Liste 2 " + list2);
-            out.println("permutations " + searchSquares(givenList));
+            Map<Integer, List<Integer>> m = searchSquares(givenList);
+            out.println("permutations " + m);
+            out.println("MapSize " + m.size());
+            int key = 5;
+            out.println("< " + key  + " | " + m.get(key) + " >");
+            out.println("Size of Value " + m.get(key).size());
             return perfectSquares;
         }
         return null;
@@ -62,5 +67,13 @@ public class SquareSums {
             }
         }
         return squarePairs;
+    }
+
+    public static int calSumOfN(int n){
+        return (n*n+n)/2;
+    }
+
+    public static double divideSumByN(int n){
+        return calSumOfN(n) / (double) n;
     }
 }
