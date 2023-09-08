@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import static java.lang.System.*;
 
@@ -30,7 +29,7 @@ public class SquareSums {
     public static List<Integer> createList(int n) {
         return IntStream.range(1, n + 1)
                 .boxed()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public static List<Integer> createSquares(int n) {
@@ -42,7 +41,7 @@ public class SquareSums {
                 .range(2, (int) Math.sqrt(2 * n - 1.0) + 1)
                 .map(i -> i * i)
                 .boxed()
-                .collect(Collectors.toList());
+                .toList();
     }
 
 
