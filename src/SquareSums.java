@@ -3,77 +3,99 @@ import java.util.stream.IntStream;
 import static java.lang.System.*;
 
 public class SquareSums {
-    static List<Integer> squares = new ArrayList<>();
     static List<Integer> givenList = new ArrayList<>();
-
-    static List<Integer> list1 = new ArrayList<>();
-    static List<Integer> list2 = new ArrayList<>();
-
+    static List<Integer> squares = new ArrayList<>();
     static List<Integer> perfectSquares = new ArrayList<>();
 
+    static Map<Integer, List<Integer>> squarePairs;
+
+    static Map<Integer, Integer> countMap = new HashMap<>();
+
     public static List<Integer> buildUpTo(int n) {
-        if(n >= 15){
-            createList(n);
-            out.println("givenList " + givenList);
-            createSquares(n);
-            out.println("squares: " + squares);
-            makeTwoLists();
-            out.println("List 1 " + list1 + " Liste 2 " + list2);
-            Map<Integer, List<Integer>> m = searchSquares(givenList);
-            out.println("permutations " + m);
-            out.println("MapSize " + m.size());
-            int key = 5;
-            out.println("< " + key  + " | " + m.get(key) + " >");
-            out.println("Size of Value " + m.get(key).size());
-            return perfectSquares;
+        if(n >= 1){
+            givenList = createList(n);
+            squares = createSquares(n);
+            squarePairs =  searchSquares(givenList,squares);
+            if(squarePairs  != null ){
+                out.println("SquarePairs " + squarePairs);
+
+                countMap = countKeysByListSize(squarePairs);
+                out.println("CountKeysByListSize " + countMap);
+
+                if(allHasSquarePair(squarePairs, givenList)){
+                    return perfectSquares;
+                }
+                else {
+                    return null;
+                }
+            }
+
         }
         return null;
     }
-    public static void createList(int n){
+    public static List<Integer> createList(int n){
+
+        List<Integer> list = new ArrayList<>();
+
         IntStream.range(1, n + 1)
-                .forEach(givenList::add);
+                .forEach(list::add);
+        return list;
     }
-    public static void createSquares(int n){
+    public static List<Integer> createSquares(int n){
+
+        List<Integer> list = new ArrayList<>();
+
         try{
             IntStream
                     .range(2, (int) Math.sqrt(2 * n - 1.0) + 1)
                     .map(i -> i * i)
-                    .forEach(squares::add);
+                    .forEach(list::add);
         } catch (ArithmeticException e) {
             throw new IllegalArgumentException("Invalid input: n is too small.");
         }
+        return list;
     }
 
-    public static void makeTwoLists(){
+    public static Map<Integer, List<Integer>> searchSquares(List<Integer> givenList, List<Integer> squares) {
 
-        int start = givenList.get(0);
-        int end = givenList.get(givenList.size()-1) + 1;
-        int half = givenList.get((givenList.size() / 2) + 1);
-        IntStream.range(start, half)
-                .forEach(list1::add);
-        IntStream.range(half, end)
-                .forEach(list2::add);
-    }
+        Map<Integer, List<Integer>> unsortedMap = new HashMap<>();
 
-    public static Map<Integer, List<Integer>> searchSquares(List<Integer> list) {
-        Map<Integer, List<Integer>> squarePairs = new HashMap<>();
-
-        for (Integer key : list) {
-            for (Integer value : list) {
+        for (Integer key : givenList) {
+            for (Integer value : givenList) {
                 int sum = key + value;
                 if (!key.equals(value) && squares.contains(sum)) {
-                    squarePairs.computeIfAbsent(key, k -> new ArrayList<>()).add(value); //lambda expr. to add a new list for a key
+                    unsortedMap.computeIfAbsent(key, k -> new ArrayList<>()).add(value);
                 }
+            }if(unsortedMap.get(key) == null){
+                return null;
             }
         }
-        return squarePairs;
+        List<Map.Entry<Integer, List<Integer>>> entries = new ArrayList<>(unsortedMap.entrySet());
+
+        entries.sort(Comparator.comparingInt(entry -> entry.getValue().size()));
+
+        Map<Integer, List<Integer>> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<Integer, List<Integer>> entry : entries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
     }
 
-    public static int calSumOfN(int n){
-        return (n*n+n)/2;
+    public static Map<Integer, Integer> countKeysByListSize(Map<Integer, List<Integer>> map) {
+        Map<Integer, Integer> countMap = new HashMap<>();
+        for (List<Integer> valueList : map.values()) {
+            int size = valueList.size();
+            countMap.put(size, countMap.getOrDefault(size, 0) + 1);
+        }
+        return countMap;
     }
 
-    public static double divideSumByN(int n){
-        return calSumOfN(n) / (double) n;
+    public static boolean allHasSquarePair(Map<Integer, List<Integer>> map, List<Integer> list) {
+        for (Integer entry : list) {
+            if (!map.containsKey(entry)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
