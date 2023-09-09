@@ -20,7 +20,6 @@ public class SquareSums {
                 out.println("SquarePairs " + squarePairs);
                 countMap = countKeysByListSize(squarePairs);
                 out.println("CountKeysByListSize " + countMap);
-                return perfectSquares;
             }
         }
         return null;
@@ -44,12 +43,11 @@ public class SquareSums {
                 .toList();
     }
 
-
     public static Map<Integer, List<Integer>> searchSquares(List<Integer> givenList, List<Integer> squares) {
         Map<Integer, List<Integer>> resultMap = new HashMap<>();
 
         for (Integer key : givenList) {
-            boolean keyHasEntry = false; // Flag, um zu überprüfen, ob der Schlüssel Einträge hat
+            boolean keyHasEntry = false;
             for (Integer value : givenList) {
                 if (!key.equals(value)) {
                     int sum = key + value;

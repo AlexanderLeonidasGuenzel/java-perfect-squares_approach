@@ -8,7 +8,7 @@ public class Main {
 
     static int counter = 0;
     public static void main(String[] args) {
-        for(int i = 3; i <= 15; i++){
+        for(int i = 2; i <= 30; i++){
             out.println("perfectsquares for n = " + i + " is: "+ SquareSums.buildUpTo(i));
         }
     }
