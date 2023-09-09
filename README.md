@@ -13,8 +13,6 @@ Still working on this approach.
 [Numberphile: The Square-Sum Problem - Numberphile](https://www.youtube.com/watch?v=G1m7goLCJDY) <br>
 [HexagonVideos: Numberphile's Square-Sum Problem was solved](https://www.youtube.com/watch?v=-vxW42R47bc)
 
-![square-sum-verification](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/8728d328-7eb9-433e-94f2-ac45006205f2)
+## Bilder
 
-
-![square-sum-1to24](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/e1b07252-6f7b-4c72-b1ac-805451a0bf59)
-![square-sum-25up](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/0221054e-b943-4107-ad89-27dc93d5df07)
+![square-sum-verification](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/1a6e5e56-e58f-47ee-b1a3-ef605b0c8fe2)
