@@ -17,4 +17,4 @@ Still working on this approach.
 
 ![square-sum-verification](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/1a6e5e56-e58f-47ee-b1a3-ef605b0c8fe2)
 ![square-sum-1to24](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/d35408f4-223a-453b-a98b-ec37929ef650)
-![square-sum-25up](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/e809ef8b-c144-43e1-8074-85d92300e4c1)
+![square-sum-25up](https://github.com/AlexanderLeonidasGuenzel/java-perfect-squares_approach/assets/113258245/7808e22d-4dff-4fa2-9217-5ff08d890c0d)
